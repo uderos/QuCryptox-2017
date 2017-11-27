@@ -267,7 +267,7 @@ def calc_chsh_pwin(rhoAB, thetaA0, thetaA1, thetaB0, thetaB1):
 
 	qprint('measA0_x0',measA0_x0)
 	qprint('measA1_x0',measA1_x0)
-	qprint('measA1_x1',measA1_x1)
+	qprint('measA0_x1',measA0_x1)
 	qprint('measA1_x1',measA1_x1)
 	qprint('measB0_y0',measB0_y0)
 	qprint('measB1_y0',measB1_y0)
@@ -299,8 +299,8 @@ def calc_chsh_pwin(rhoAB, thetaA0, thetaA1, thetaB0, thetaB1):
 
 	return pwin
 
-def page4_question1():
-	print("\n\n== PAGE 4 QUESTION 01 ==")
+def page4_question1_A():
+	print("\n\n== PAGE 4 QUESTION 01-A ==")
 	thetaA0 = 0
 	thetaA1 = math.pi / 4.0
 	thetaB0 = math.pi / 8.0
@@ -317,8 +317,41 @@ def page4_question1():
 	qprint('rhoAB   ', rhoAB   )
 
 	pWin = calc_chsh_pwin(rhoAB, thetaA0, thetaA1, thetaB0, thetaB1)
-	print("\n\t ## PWIN = %g" % pWin)
+	print("\n\t ## PWIN = %r" % pWin)
 
+def page4_question1_B():
+	print("\n\n== PAGE 4 QUESTION 01-B ==")
+	thetaA0 = 0
+	thetaA1 = math.pi / 4.0
+	thetaB0 = math.pi / 8.0
+	thetaB1 = math.pi / (-8.0)
+
+	psi_good = normalizer(2) * (qb00 + qb11)
+	rho_good = ket2dm(psi_good)
+	rho_bad  = ket2dm(qb01)
+	rhoAB    = 0.25 * rho_good + 0.75 * rho_bad
+
+	qprint('psi_good', psi_good)
+	qprint('rho_good', rho_good)
+	qprint('rho_bad ', rho_bad )
+	qprint('rhoAB   ', rhoAB   )
+
+	pWin = calc_chsh_pwin(rhoAB, thetaA0, thetaA1, thetaB0, thetaB1)
+	print("\n\t ## PWIN = %r" % pWin)
+
+def page4_question1_C():
+	print("\n\n== PAGE 4 QUESTION 01-B ==")
+	thetaA0 = 0
+	thetaA1 = math.pi / 4.0
+	thetaB0 = 0
+	thetaB1 = math.pi / 4.0
+
+	psi_good = normalizer(2) * (qb00 + qb11)
+	rhoAB    = ket2dm(psi_good)
+	qprint('rhoAB   ', rhoAB   )
+
+	pWin = calc_chsh_pwin(rhoAB, thetaA0, thetaA1, thetaB0, thetaB1)
+	print("\n\t ## PWIN = %r" % pWin)
 
 def main():
 	#test01()
@@ -331,7 +364,9 @@ def main():
 	#page2_question1()
 	#page2_question2()
 	#page3_question1()
-	page4_question1()
+	page4_question1_A()
+	#page4_question1_B()
+	page4_question1_C()
 
 if __name__ == "__main__":
 	main()
