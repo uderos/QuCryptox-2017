@@ -250,10 +250,16 @@ def page3_question1():
 	cc = math.cos(math.pi/7.0)
 	show_shmidt_coeffs(ss*qb00 + cc*qb11)
 
+#def meas_outcome_d2(rhoAB, meas_A_ket, meas_B_ket):
+#	op = tensor(meas_A_ket, meas_B_ket)
+#	meas_outcome = op.dag().overlap(rhoAB * op)
+#	return meas_outcome 
+
 def meas_outcome_d2(rhoAB, meas_A_ket, meas_B_ket):
-	op = tensor(meas_A_ket, meas_B_ket)
-	meas_outcome = op.dag().overlap(rhoAB * op)
-	return meas_outcome 
+	meas_ket = tensor(meas_A_ket, meas_B_ket)
+	meas_dm = ket2dm(meas_ket)
+	outcome = (rhoAB * meas_dm).tr()
+	return outcome
 
 def calc_chsh_pwin(rhoAB, thetaA0, thetaA1, thetaB0, thetaB1):
 	measA0_x0 = math.cos(thetaA0)*qb0 + math.sin(thetaA0)*qb1
@@ -365,7 +371,7 @@ def main():
 	#page2_question2()
 	#page3_question1()
 	page4_question1_A()
-	#page4_question1_B()
+	page4_question1_B()
 	page4_question1_C()
 
 if __name__ == "__main__":
