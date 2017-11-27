@@ -250,14 +250,15 @@ def page3_question1():
 	cc = math.cos(math.pi/7.0)
 	show_shmidt_coeffs(ss*qb00 + cc*qb11)
 
-def meas_outcome_d2(rho, meas_A_ket, meas_B_ket):
-	op = tensor(measA0_x0, measB0_y0)
-	pA0_x0 = op.dag().overlap(rhoAB * op)
+def meas_outcome_d2(rhoAB, meas_A_ket, meas_B_ket):
+	op = tensor(meas_A_ket, meas_B_ket)
+	meas_outcome = op.dag().overlap(rhoAB * op)
+	return meas_outcome 
 
 def calc_chsh_pwin(rhoAB, thetaA0, thetaA1, thetaB0, thetaB1):
 	measA0_x0 = math.cos(thetaA0)*qb0 + math.sin(thetaA0)*qb1
 	measA1_x0 = (-1.0)*math.sin(thetaA0)*qb0 + math.cos(thetaA0)*qb1
-	measA1_x1 = math.cos(thetaA1)*qb0 + math.sin(thetaA1)*qb1
+	measA0_x1 = math.cos(thetaA1)*qb0 + math.sin(thetaA1)*qb1
 	measA1_x1 = (-1.0)*math.sin(thetaA1)*qb0 + math.cos(thetaA1)*qb1
 	measB0_y0 = math.cos(thetaB0)*qb0 + math.sin(thetaB0)*qb1
 	measB1_y0 = (-1.0)*math.sin(thetaB0)*qb0 + math.cos(thetaB0)*qb1
@@ -283,18 +284,20 @@ def calc_chsh_pwin(rhoAB, thetaA0, thetaA1, thetaB0, thetaB1):
 	p10_11 = meas_outcome_d2(rhoAB, measA1_x1, measB0_y1)
 	p01_11 = meas_outcome_d2(rhoAB, measA0_x1, measB1_y1)
 
-	print("p00_00=%g p11_00=%g" % (p00_00, p11_00))
-	print("p00_10=%g p11_10=%g" % (p00_10, p11_10))
-	print("p00_01=%g p11_01=%g" % (p00_01, p11_01))
-	print("p10_11=%g p01_11=%g" % (p10_11, p10_11))
+	print("p00_00=%r p11_00=%r" % (p00_00, p11_00))
+	print("p00_10=%r p11_10=%r" % (p00_10, p11_10))
+	print("p00_01=%r p11_01=%r" % (p00_01, p11_01))
+	print("p10_11=%r p01_11=%r" % (p10_11, p10_11))
 
 	pwin_00 = p00_00 + p11_00
 	pwin_01 = p00_01 + p11_01
 	pwin_10 = p00_10 + p11_10
 	pwin_11 = p10_11 + p10_11
 
-	pwin = pwin_00 + pwin_01 + pwin_10 + pwin_11 
-	print("Pwin = %g" % pwin)
+	pwin = 0.25*(pwin_00 + pwin_01 + pwin_10 + pwin_11).real
+	print("Pwin = %r" % pwin)
+
+	return pwin
 
 def page4_question1():
 	print("\n\n== PAGE 4 QUESTION 01 ==")
