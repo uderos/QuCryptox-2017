@@ -94,6 +94,54 @@ def problem_3_2():
 	print("pGuess = %r" % pGuess)
 
 
+def problem_3_3_A():
+	print("== PAGE 3 PROBLEM 3-A ==")
+	alpha = 1.0 / math.sqrt(2 + math.sqrt(2))
+	psiA = alpha * (qb0 + qbY0)
+	psiPlus1 = qb0
+	psiMinus1 = qb1
+	psiPlus2 = qbHp
+	psiMinus2 = qbHm
+	psiPlus3 = qbY0
+	psiMinus3 = qbY1
+	pGuess1 = calc_pGuess(psiA, psiPlus1, psiMinus1)
+	pGuess2 = calc_pGuess(psiA, psiPlus2, psiMinus2)
+	pGuess3 = calc_pGuess(psiA, psiPlus3, psiMinus3)
+	pGuess = (pGuess1 + pGuess2 + pGuess3) / 3.0
+	print("pGuess = %r" % pGuess)
+
+def problem_3_3_B():
+	print("== PAGE 3 PROBLEM 3-B ==")
+	alpha = 1.0 / math.sqrt(4 + 2*math.sqrt(2))
+	psiA = alpha * (qb0 + qbHp + qbY0)
+	psiPlus1 = qb0
+	psiMinus1 = qb1
+	psiPlus2 = qbHp
+	psiMinus2 = qbHm
+	psiPlus3 = qbY0
+	psiMinus3 = qbY1
+	pGuess1 = calc_pGuess(psiA, psiPlus1, psiMinus1)
+	pGuess2 = calc_pGuess(psiA, psiPlus2, psiMinus2)
+	pGuess3 = calc_pGuess(psiA, psiPlus3, psiMinus3)
+	pGuess = (pGuess1 + pGuess2 + pGuess3) / 3.0
+	print("pGuess = %r" % pGuess)
+
+def problem_3_3_C():
+	print("== PAGE 3 PROBLEM 3-C ==")
+	psiA = math.sqrt(3.0/5.0) * (math.sqrt(2.0/3.0)*qb0 + math.sqrt(1.0/3.0)*qbY1)
+	psiPlus1 = qb0
+	psiMinus1 = qb1
+	psiPlus2 = qbHp
+	psiMinus2 = qbHm
+	psiPlus3 = qbY0
+	psiMinus3 = qbY1
+	pGuess1 = calc_pGuess(psiA, psiPlus1, psiMinus1)
+	pGuess2 = calc_pGuess(psiA, psiPlus2, psiMinus2)
+	pGuess3 = calc_pGuess(psiA, psiPlus3, psiMinus3)
+	pGuess = (pGuess1 + pGuess2 + pGuess3) / 3.0
+	print("pGuess = %r" % pGuess)
+
+
 	
 
 
@@ -128,8 +176,11 @@ def main():
 	#test01()
 	#test02()
 	#test03()
-	problem_1_2()
+	#problem_1_2()
 	problem_3_2()
+	problem_3_3_A()
+	problem_3_3_B()
+	problem_3_3_C()
 
 if __name__ == "__main__":
 	main()
