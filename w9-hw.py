@@ -142,14 +142,9 @@ def exercise_2_3():
 	
 
 
-def exercise_3():
-	print("== EXERCISE 3")
-
 def exercise_4():
 	print("== EXERCISE 4")
 
-
-	
 	
 
 
@@ -171,8 +166,7 @@ def main():
 	exercise_2_1()
 	exercise_2_2()
 	exercise_2_3()
-	#exercise_3()
-	#exercise_4()
+	exercise_4()
 
 if __name__ == "__main__":
 	main()
